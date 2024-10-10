@@ -1,0 +1,16 @@
+{
+    "version": 1,
+    "name": "nonglek spirit house",
+    "builds": [
+        {
+            "src": "./index.js",
+            "use": "@vercel/node"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "/"
+        }
+    ]
+}
