@@ -2,7 +2,7 @@ async function userLogout(req, res){
     try{
         const tokenOptions = {
             httpOnly: true,
-            secure: true,
+            secure: process.env.NODE_ENV === 'production',
             sameSite: 'none'
         };
         
