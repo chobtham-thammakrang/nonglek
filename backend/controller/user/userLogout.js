@@ -5,7 +5,7 @@ async function userLogout(req, res){
             secure: process.env.NODE_ENV === 'production',  // Set to true in production
             sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax' // Lax for dev, None for prod
         };
-        }
+        
         res.clearCookie("token", tokenOptions);
 
         res.json({
