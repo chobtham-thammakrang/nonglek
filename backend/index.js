@@ -14,6 +14,13 @@ app.use(cors({
 app.use(express.json())
 app.use(cookieParser())
 
+// Add this middleware
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  res.setHeader('Access-Control-Allow-Origin', process.env.FRONTEND_URL);
+  next();
+});
+
 app.use("/api", router)
 
 const PORT = process.env.PORT || 8080
