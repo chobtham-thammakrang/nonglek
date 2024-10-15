@@ -24,7 +24,7 @@ const UploadReceiptModal = ({ orderId, onClose, fetchOrders, isModal = true, ord
         });
         const data = await response.json();
         if (data.success) {
-          toast.success('Receipt uploaded successfully');
+          toast.success('อัปโหลดสำเร็จ');
           fetchOrders();
           if (isModal) onClose(); // Close the modal if it's a modal
         } else {
@@ -35,7 +35,7 @@ const UploadReceiptModal = ({ orderId, onClose, fetchOrders, isModal = true, ord
       }
     } catch (error) {
       console.error('Error uploading receipt:', error);
-      toast.error('Failed to upload receipt: ' + error.message);
+      toast.error('อัปโหลดล้มเหลว: ' + error.message);
     } finally {
       setUploadingReceipt(false);
     }

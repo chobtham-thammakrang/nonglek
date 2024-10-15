@@ -79,7 +79,7 @@ const HorizontalCardProduct = ({category, heading}) => {
                             <div className='flex items-center gap-3'>
                                 <p className='text-base font-medium'>{ displayCurrency(product?.price)}</p>
                             </div>
-                            <button className='bg-red-600 hover:bg-red-700 text-white px-3 py-0.5 rounded-full text-sm' onClick={(e)=>handleAddToCart(e,product?._id)}>Add to Cart</button>
+                            <button className='bg-red-600 hover:bg-red-700 text-white px-3 py-0.5 rounded-full text-sm' onClick={(e)=>handleAddToCart(e,product?._id)}>เพิ่มลงตะกร้า</button>
                         </div>
                     </Link>
                 ))

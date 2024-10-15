@@ -52,9 +52,9 @@ const ChangeUserRole = ({
                 <IoMdClose size={24} />
             </button>
             
-            <h1 className='pb-4 text-lg font-medium'>Change User Role</h1>
-            <p>Name : {name}</p>
-            <p>Email : {email}</p>
+            <h1 className='pb-4 text-lg font-medium'>เปลี่ยนหน้าตำแหน่งของผู้ใช้</h1>
+            <p>ชื่อ : {name}</p>
+            <p>อีเมล : {email}</p>
 
             <div className='flex items-center justify-between my-4'>
                 <p>Role : </p>
@@ -68,7 +68,7 @@ const ChangeUserRole = ({
                     }
                 </select>
             </div>
-            <button className='w-fit mx-auto block p-1 px-3 rounded-full bg-red-600 text-white hover:bg-red-700' onClick={updateUserRole} >Change Role</button>
+            <button className='w-fit mx-auto block p-1 px-3 rounded-full bg-red-600 text-white hover:bg-red-700' onClick={updateUserRole} >เปลี่ยนตำแหน่ง</button>
         </div>
     </div>
   )

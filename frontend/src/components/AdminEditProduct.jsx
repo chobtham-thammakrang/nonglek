@@ -83,14 +83,14 @@ const AdminEditProduct = ({
         <div className='fixed w-full h-full bg-slate-200 bg-opacity-50 top-0 left-0 right-0 bottom-0 flex justify-center items-center'>
             <div className='bg-white p-4 rounded w-full max-w-2xl h-full max-h-[80%] overflow-hidden'>
                 <div className='flex justify-between items-center pb-3'>
-                    <h2 className='font-bold text-lg'>Edit Product </h2>
+                    <h2 className='font-bold text-lg'>แก้ไขสินค้า </h2>
                     <div className='w-fit ml-auto text-2xl hover:text-red-600 cursor-pointer' onClick={onClose}>
                         <CgClose />
                     </div>
                 </div>
 
                 <form className='grid p-4 gap-2 overflow-y-scroll h-full pb-5' onSubmit={handleSubmit}>
-                    <label htmlFor="productName">Product Name : </label>
+                    <label htmlFor="productName">ชื่อสินค้า : </label>
                     <input
                         type="text"
                         id='productName'
@@ -102,7 +102,7 @@ const AdminEditProduct = ({
                         required
                     />
 
-                    <label htmlFor="shape" className='mt-3'>Shape : </label>
+                    <label htmlFor="shape" className='mt-3'>รูปร่าง : </label>
                     <input
                         type="text"
                         id='shape'
@@ -114,20 +114,20 @@ const AdminEditProduct = ({
                         required
                     />
                     
-                    <label htmlFor="category" className='mt-3'>Category : </label>
+                    <label htmlFor="category" className='mt-3'>ประเภทสินค้า : </label>
                     <select required value={data.category} name='category' onChange={handleOnChange} className='p-2 bg-slate-100 border rounded'>
-                        <option value={""}>Select Category</option>
+                        <option value={""}>เลือกประเภทสินค้า</option>
                         {productCategory.map((el, index) => (
                             <option value={el.value} key={el.value + index}>{el.label}</option>
                         ))}
                     </select>
 
-                    <label htmlFor="productImage" className='mt-3'>Product Image : </label>
+                    <label htmlFor="productImage" className='mt-3'>รูปภาพสินค้า : </label>
                     <label htmlFor="uploadImageInput">
                         <div className='p-2 bg-slate-100 border rounded h-48 w-full flex justify-center items-center cursor-pointer'>
                             <div className='text-slate-500 flex flex-col items-center justify-center gap-2'>
                                 <span className='text-4xl'><FaCloudUploadAlt /></span>
-                                <p className='text-sm text-slate-400'>Upload Product Image</p>
+                                <p className='text-sm text-slate-400'>อัปโหลดรูปภาพสินค้า</p>
                                 <input type="file" id='uploadImageInput' className='hidden' onChange={handleUploadProduct}/>
                             </div>
                         </div>
@@ -156,11 +156,11 @@ const AdminEditProduct = ({
                                 ))}
                             </div>
                         ) : (
-                            <p className='text-red-500 text-xs'>*Upload product Image</p>
+                            <p className='text-red-500 text-xs'>*อัปโหลดรูปภาพสินค้า</p>
                         )}
                     </div>
 
-                    <label htmlFor="price" className='mt-3'>Price : </label>
+                    <label htmlFor="price" className='mt-3'>ราคา : </label>
                     <input
                         type="number"
                         id='price'
@@ -172,7 +172,7 @@ const AdminEditProduct = ({
                         required
                     />
 
-                    <label htmlFor="description" className='mt-3'>Description : </label>
+                    <label htmlFor="description" className='mt-3'>คำอธิบายสินค้า : </label>
                     <textarea
                         id='description'
                         placeholder='Enter Product Description'
@@ -183,7 +183,7 @@ const AdminEditProduct = ({
                         className='h-28 p-2 bg-slate-100 border rounded'
                     />
                     
-                    <button className='px-3 py-2 bg-red-600 text-white rounded mb-10 hover:bg-red-700'>Update Product</button>
+                    <button className='px-3 py-2 bg-red-600 text-white rounded mb-10 hover:bg-red-700'>เพิ่มสินค้า</button>
                 </form> 
             </div>
             {openFullScreenImage && (

@@ -63,7 +63,7 @@ const VerticalCardProduct = ({category, heading}) => {
                                 </div>
                                 <div className='p-4 grid gap-3'>
                                     <h2 className='font-medium text-base md:text-lg text-ellipsis line-clamp-1 text-black p-1 py-2 animate-pulse rounded-full bg-slate-200'>
-                                        <span className="sr-only">Loading product name</span>
+                                        <span className="sr-only">โหลดสินค้า</span>
                                     </h2>
                                     <p className='capitalize text-slate-500 p-1 animate-pulse rounded-full bg-slate-200  py-2'></p>
                                     <div className='flex gap-3'>
@@ -88,7 +88,7 @@ const VerticalCardProduct = ({category, heading}) => {
                                     <div className='flex gap-3'>
                                         <p className='text-red-600 font-medium'>{ displayCurrency(product?.price) }</p>
                                     </div>
-                                    <button className='text-sm bg-red-600 hover:bg-red-700 text-white px-3 py-0.5 rounded-full' onClick={(e)=>handleAddToCart(e,product?._id)}>Add to Cart</button>
+                                    <button className='text-sm bg-red-600 hover:bg-red-700 text-white px-3 py-0.5 rounded-full' onClick={(e)=>handleAddToCart(e,product?._id)}>เพิ่มลงในตะกร้า</button>
                                 </div>
                             </Link>
                         )

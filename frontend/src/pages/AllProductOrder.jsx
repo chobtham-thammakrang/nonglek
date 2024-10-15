@@ -147,21 +147,21 @@ const AllProductOrder = () => {
 
   return (
     <div className="container mx-auto p-4 bg-gray-100 min-h-screen">
-      <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">All Orders</h1>
+      <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">รายการสั่งซื้อทั้งหมด</h1>
       <div className="mb-6 flex flex-col sm:flex-row justify-between items-center bg-white p-4 rounded-lg shadow">
         <div className="mb-4 sm:mb-0">
-          <label className="mr-2 font-semibold">Sort by:</label>
+          <label className="mr-2 font-semibold">เรียงตาม:</label>
           <select 
             value={sortBy} 
             onChange={(e) => setSortBy(e.target.value)} 
             className="border p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
-            <option value="date">Date</option>
-            <option value="total">Total Amount</option>
+            <option value="date">วันที่</option>
+            <option value="total">ราคารวม</option>
           </select>
         </div>
         <div>
-          <label className="mr-2 font-semibold">Filter by status:</label>
+          <label className="mr-2 font-semibold">กรองตามสถนะ:</label>
           <select 
             value={filterStatus} 
             onChange={(e) => setFilterStatus(e.target.value)} 
@@ -179,7 +179,7 @@ const AllProductOrder = () => {
         {currentOrders.map((order) => (
           <div key={order._id} className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
             <div className="flex justify-between items-center mb-4">
-              <h2 className="text-2xl font-semibold text-gray-800">Order #{order._id}</h2>
+              <h2 className="text-2xl font-semibold text-gray-800">รายการ #{order._id}</h2>
               <div className="flex items-center">
                 <p className={`text-xl font-bold ${getStatusColor(order.status)} mr-4`}>{order.status}</p>
                 <select
@@ -196,11 +196,11 @@ const AllProductOrder = () => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
               <div>
-                <p className="text-lg"><span className="font-semibold">Customer:</span> {order.userId.name}</p>
-                <p className="text-lg"><span className="font-semibold">Email:</span> {order.userId.email}</p>
-                <p className="text-lg"><span className="font-semibold">Total:</span> {displayCurrency(order.totalAmount)}</p>
+                <p className="text-lg"><span className="font-semibold">ลูกค้า:</span> {order.userId.name}</p>
+                <p className="text-lg"><span className="font-semibold">อีเมล:</span> {order.userId.email}</p>
+                <p className="text-lg"><span className="font-semibold">ราคาสินค้ารวม:</span> {displayCurrency(order.totalAmount)}</p>
                 <div className="mt-2 flex items-center">
-                  <span className="font-semibold">Shipping Cost:</span>
+                  <span className="font-semibold">ค่าจัดส่ง:</span>
                   {editingOrder === order._id ? (
                     <input
                       type="number"
@@ -223,15 +223,15 @@ const AllProductOrder = () => {
                 </div>
               </div>
               <div>
-                <h3 className="font-semibold text-lg mb-1">Address:</h3>
+                <h3 className="font-semibold text-lg mb-1">ที่อยู่:</h3>
                 <p className="text-gray-700">
                   {order.address.houseNumber}, {order.address.alley}, {order.address.road}, {order.address.district}, {order.address.subDistrict}, {order.address.province}, {order.address.postalCode}
                 </p>
-                <p className="mt-2"><span className="font-semibold">Contact:</span> {order.contactNumber}</p>
+                <p className="mt-2"><span className="font-semibold">เบอร์โทร:</span> {order.contactNumber}</p>
               </div>
             </div>
             <div className="mb-4">
-              <h3 className="font-semibold text-lg">Additional Details:</h3>
+              <h3 className="font-semibold text-lg">รายละเอียดเพิ่มเติม:</h3>
               {editingOrder === order._id ? (
                 <textarea
                   value={order.additionalDetails || ''}
@@ -249,7 +249,7 @@ const AllProductOrder = () => {
                 </p>
               )}
             </div>
-            <h3 className="font-semibold text-lg mb-2">Items:</h3>
+            <h3 className="font-semibold text-lg mb-2">สินค้า:</h3>
 
             <ul className="space-y-2">
               {order.items.map((item) => (
@@ -265,9 +265,9 @@ const AllProductOrder = () => {
                   <div>
                     {/* Render the product name only if item.productId is not null */}
                     <p className="font-semibold">{item.productId ? item.productId.productName : 'Product not found'}</p>
-                    <p className="text-gray-600">Quantity: {item.quantity}</p>
+                    <p className="text-gray-600">จำนวน: {item.quantity}</p>
                     {/* Render the product price only if item.productId is not null */}
-                    <p className="text-gray-600">Price: {item.productId ? displayCurrency(item.productId.price) : 'N/A'}</p>
+                    <p className="text-gray-600">ราคา: {item.productId ? displayCurrency(item.productId.price) : 'N/A'}</p>
                   </div>
                 </li>
               ))}
@@ -275,7 +275,7 @@ const AllProductOrder = () => {
 
             {order.receiptImage && order.receiptImage.length > 0 && (
               <div className="mt-4">
-                <h3 className="font-semibold text-lg mb-2">Receipt:</h3>
+                <h3 className="font-semibold text-lg mb-2">หลักฐานการชำระเงิน:</h3>
                 <img src={order.receiptImage[0]} alt="Receipt" className="max-w-xs rounded shadow" />
               </div>
             )}

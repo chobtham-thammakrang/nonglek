@@ -46,7 +46,7 @@ const OurWork = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h2 className="text-2xl font-bold text-center mb-8">Our Work</h2>
+      <h2 className="text-2xl font-bold text-center mb-8">ผลงานของเรา</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {images.map((image, index) => (
           <div key={index} className="overflow-hidden rounded-lg">

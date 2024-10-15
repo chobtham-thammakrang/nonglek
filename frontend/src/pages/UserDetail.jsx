@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { Link, Outlet, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import ChangePasswordModal from '../components/ChangePasswordModal';
 
 const UserDetail = () => {
@@ -28,7 +28,7 @@ const UserDetail = () => {
       <hr className="mb-4 border-gray-300" />
       <div className="user-detail flex flex-wrap -mx-4">
         <div className="user-info w-full p-4">
-          <h2 className="text-lg font-bold mb-2">User Information</h2>
+          <h2 className="text-lg font-bold mb-2">ข้อมูลผู้ใช้</h2>
           <p className="text-gray-600">
             <strong>Name:</strong> {user?.name}
           </p>
@@ -43,7 +43,7 @@ const UserDetail = () => {
                 onClick={handleChangePasswordClick}
                 className="text-indigo-600 hover:text-indigo-900 transition duration-300 ease-in-out"
               >
-                Change Password
+                เปลี่ยนรหัสผ่าน
               </button>
             </li>
           </ul>

@@ -76,11 +76,11 @@ const Checkout = () => {
       }
   
       const data = await response.json();
-      toast.success('Order placed successfully!');
+      toast.success('สร้างรายการสั่งซื้อ สำเร็จ!');
       fetchUserAddToCart();
       navigate('/order-confirmation', { state: { orderId: data.orderId } });
     } catch (error) {
-      console.error('Error placing order:', error);
+      console.error('สร้างรายการสั่งซื้อ ล้มเหลว:', error);
       toast.error(error.message || 'An error occurred while placing the order');
     } finally {
       setIsSubmitting(false); 
@@ -123,7 +123,7 @@ const Checkout = () => {
               </div>
             ))}
             <div className="text-xl font-bold text-right mt-4">
-              Total: {displayCurrency(totalPrice)}
+              ราคารวม: {displayCurrency(totalPrice)}
             </div>
           </div>
         </div>

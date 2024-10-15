@@ -157,9 +157,9 @@ const ProductOrder = () => {
                         <div>
                           {/* Render the product name only if item.productId is not null */}
                           <p className="font-semibold text-xl mb-2">{item.productId ? item.productId.productName : 'Product not found'}</p>
-                          <p className="text-gray-600">Quantity: {item.quantity}</p>
+                          <p className="text-gray-600">จำนวน: {item.quantity}</p>
                           {/* Render the product price only if item.productId is not null */}
-                          <p className="text-gray-600">Price: {item.productId ? displayCurrency(item.productId.price) : 'N/A'}</p>
+                          <p className="text-gray-600">ราคา: {item.productId ? displayCurrency(item.productId.price) : 'N/A'}</p>
                         </div>
                       </li>
                     ))}

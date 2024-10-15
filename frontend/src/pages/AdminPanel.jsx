@@ -38,9 +38,9 @@ const AdminPanel = () => {
 
             <div>
                 <nav className='grid p-4'>
-                    <Link to={"all-users"} className='px-2 py-1 hover:bg-slate-100'>All Users</Link>
-                    <Link to={"all-products"} className='px-2 py-1 hover:bg-slate-100'>All Products</Link>
-                    <Link to={"all-product-Order"} className='px-2 py-1 hover:bg-slate-100'>All Orders</Link>
+                    <Link to={"all-users"} className='px-2 py-1 hover:bg-slate-100'>ผู้ใช้ทั้งหมดs</Link>
+                    <Link to={"all-products"} className='px-2 py-1 hover:bg-slate-100'>สินค้าทั้หมด</Link>
+                    <Link to={"all-product-Order"} className='px-2 py-1 hover:bg-slate-100'>รายการสั่งซื้อทั้งหมด</Link>
                 </nav>
             </div>
         </aside>

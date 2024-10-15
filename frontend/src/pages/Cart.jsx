@@ -125,7 +125,7 @@ const Cart = () => {
         <div className='text-center text-lg my-3'>
             {
                 data.length === 0 && !loading && (
-                    <p className='bg-white py-5'>No Data</p>
+                    <p className='bg-white py-5'>ไม่มีสินค้า</p>
                 )
             }
         </div>
@@ -170,8 +170,8 @@ const Cart = () => {
                                   </>
                                 ) : (
                                   <div className='col-span-2 flex items-center justify-center'>
-                                    <p className='text-red-600 font-medium'>Product is deleted</p>
-                                    <button className='ml-4 bg-red-600 text-white px-2 py-1 rounded' onClick={() => deleteCartProduct(product._id)}>Remove from cart</button>
+                                    <p className='text-red-600 font-medium'>สินค้าถูกลบ</p>
+                                    <button className='ml-4 bg-red-600 text-white px-2 py-1 rounded' onClick={() => deleteCartProduct(product._id)}>นำออกจากตะกร้า</button>
                                   </div>
                                 )}
                             </div>
@@ -191,14 +191,14 @@ const Cart = () => {
                             </div>
                             ) : (
                                 <div className='h-36 bg-white'>
-                                    <h2 className='text-white bg-red-600 px-4 py-1'>Summary</h2>
+                                    <h2 className='text-white bg-red-600 px-4 py-1'>รวม</h2>
                                     <div className='flex items-center justify-between px-4 gap-2 font-medium text-lg text-slate-600'>
-                                        <p>Quantity</p>
+                                        <p>จำนวน</p>
                                         <p>{totalQty}</p>
                                     </div>
 
                                     <div className='flex items-center justify-between px-4 gap-2 font-medium text-lg text-slate-600'>
-                                        <p>Total Price</p>
+                                        <p>ราคารวม</p>
                                         <p>{displayCurrency(totalPrice)}</p>    
                                     </div>
 

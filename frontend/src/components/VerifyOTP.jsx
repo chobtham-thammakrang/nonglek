@@ -28,7 +28,7 @@ const VerifyOTP = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (countdown === 0) {
-      toast.error('OTP has expired. Please request a new one.');
+      toast.error('OTP หมดอายุ. โปรดลองอีกครั้ง.');
       return;
     }
 
@@ -51,7 +51,7 @@ const VerifyOTP = () => {
         toast.error(data.message);
       }
     } catch (error) {
-      toast.error('An error occurred. Please try again.');
+      toast.error('ผิดพลาด. โปรดลองอีกครั้ง.');
     } finally {
       setIsLoading(false);
     }
@@ -69,24 +69,24 @@ const VerifyOTP = () => {
       });
       const data = await response.json();
       if (data.success) {
-        toast.success('OTP resent successfully');
+        toast.success('OTP ส่งอีกครั้งสำเร็จ');
         setCountdown(120);
       } else {
         toast.error(data.message);
       }
     } catch (error) {
-      toast.error('An error occurred. Please try again.');
+      toast.error('ผิดพลาด. โปรดลองอีกครั้ง.');
     }
   };
 
   return (
     <div className="container mx-auto px-4 flex items-center justify-center h-screen">
       <div className="bg-white p-12 rounded-lg shadow-md w-full max-w-lg">
-        <h2 className="text-3xl font-bold mb-6">Verify OTP</h2>
+        <h2 className="text-3xl font-bold mb-6">ยืนยัน OTP</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="otp">
-              Enter OTP
+              ใส่รหัส OTP
             </label>
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -94,7 +94,7 @@ const VerifyOTP = () => {
               type="text"
               value={otp}
               onChange={(e) => setOtp(e.target.value)}
-              placeholder="Enter the OTP sent to your email"
+              placeholder="ใส่รหัส OTP จากอีเมลของคุณ"
             />
           </div>
           <div className="mb-4">
@@ -108,7 +108,7 @@ const VerifyOTP = () => {
             type="submit"
             disabled={countdown === 0 || isLoading} // Disable button when loading or countdown is 0
           >
-            {isLoading ? 'Loading...' : 'Verify OTP'}
+            {isLoading ? 'กำลังดำเนินการ...' : 'ยืนยัน OTP'}
           </button>
         </form>
         <button
@@ -116,7 +116,7 @@ const VerifyOTP = () => {
           onClick={handleResendOTP}
           disabled={countdown > 0}
         >
-          Resend OTP
+          ส่งรหัส OTP อีกครั้ง
         </button>
       </div>
     </div>

@@ -32,18 +32,18 @@ const forgotPassword = async (req, res) => {
 
     // Email content
     const mailOptions = {
-      from: '"Nonglek Spirit House" <' + process.env.EMAIL_USER + '>',
+      from: '"น้องเล็ก ศาลพระภูมิ นครปฐม" <' + process.env.EMAIL_USER + '>',
       to: user.email,
       subject: 'OTP สำหรับเปลี่ยนรหัสผ่าน ร้าน น้องเล็ก ศาลพระภูมิ นครปฐม',
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #333;">Password Reset OTP</h2>
-          <p>You have requested to reset your password. Please use the following OTP to proceed:</p>
+          <h2 style="color: #333;">OTP รีเซ็ตรหัสผ่าน</h2>
+          <p>คุณได้ร้องขอให้รีเซ็ตรหัสผ่านของคุณ โปรดใช้ OTP ต่อไปนี้เพื่อดำเนินการต่อ:</p>
           <div style="background-color: #f0f0f0; padding: 20px; text-align: center; font-size: 36px; font-weight: bold; color: #333; margin: 20px 0;">
             ${otp}
           </div>
-          <p>This OTP will expire in 2 minutes.</p>
-          <p>If you did not request this, please ignore this email and your password will remain unchanged.</p>
+          <p>OTP นี้จะหมดอายุใน 2 นาที.</p>
+          <p>หากคุณไม่ได้ร้องขอ โปรดละเว้นอีเมลนี้ และรหัสผ่านของคุณจะไม่เปลี่ยนแปลง.</p>
         </div>
       `
     };

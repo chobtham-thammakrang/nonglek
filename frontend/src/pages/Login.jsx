@@ -59,7 +59,7 @@ const Login = () => {
                 </div>
                 <div className='w-1/2 flex items-center justify-start ml-2'>
                     <div className='bg-white p-12 rounded-lg shadow-md w-full max-w-lg'>
-                        <h2 className='text-3xl font-bold mb-6'>Log in</h2>
+                        <h2 className='text-3xl font-bold mb-6'>เข้าสู่ระบบ</h2>
                         <form onSubmit={handleOnSubmit}>
                             <InputField
                                 label="Email"
@@ -78,14 +78,14 @@ const Login = () => {
                             />
                             <div className='flex items-center justify-between mt-6'>
                                 <button className='bg-red-500 hover:bg-red-700 text-white font-bold py-3 px-6 rounded' type='submit'>
-                                    Log In
+                                    เข้าสู่ระบบ
                                 </button>
                                 <Link to='/forgot-password' className='text-sm text-red-500 hover:text-red-800'>
-                                    Forgot Password?
+                                    ลืมรหัสผ่าน?
                                 </Link>
                             </div>
                         </form>
-                        <p className='mt-4'>Don't have an account? <Link to='/sign-up' className='text-red-500 hover:text-red-800'>Sign Up</Link></p>
+                        <p className='mt-4'>ยังไม่มีบัญชีผู้ใช้? <Link to='/sign-up' className='text-red-500 hover:text-red-800'>สมัครสมาชิก</Link></p>
                     </div>
                 </div>
             </div>

@@ -41,12 +41,12 @@ const AllUser = () => {
             <table className='w-full userTable'>
                 <thead>
                     <tr className='bg-black text-white'>
-                        <th>Sr.</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Role</th>
-                        <th>Created Date</th>
-                        <th>Action</th>
+                        <th>คนที่</th>
+                        <th>ชื่อ</th>
+                        <th>อีเมล</th>
+                        <th>ตำแหน่ง</th>
+                        <th>สร้างเมื่อ</th>
+                        <th>ดำเนินการ</th>
                     </tr>
                 </thead>
                 <tbody>

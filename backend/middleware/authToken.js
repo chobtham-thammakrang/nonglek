@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken')
 
 async function authToken(req, res, next){
     try{
-        let token = req.cookies?.token || localStorage.getItem('authToken');
+        let token = req.cookies?.token
 
         // Check for Authorization header if token is not in cookies
         if (!token) {

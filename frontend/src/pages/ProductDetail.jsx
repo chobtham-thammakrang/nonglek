@@ -199,7 +199,7 @@ const ProductDetails = () => {
                 </div>
 
                 <div>
-                  <p className='text-slate-600 font-medium my-1'>Description : </p>
+                  <p className='text-slate-600 font-medium my-1'>รายละเอียดสินค้า : </p>
                   <p>{data?.description}</p>
                 </div>
 

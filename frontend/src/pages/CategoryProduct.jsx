@@ -124,22 +124,22 @@ const CategoryProduct = () => {
                 <div className='bg-white p-4 rounded-lg shadow-md min-h-screen'>
                     {/** sort by */}
                     <div className='mb-6'>
-                        <h3 className='text-lg uppercase font-semibold text-slate-700 border-b pb-2 border-slate-300'>Sort by</h3>
+                        <h3 className='text-lg uppercase font-semibold text-slate-700 border-b pb-2 border-slate-300'>เรียงตาม</h3>
                         <form className='text-sm flex flex-col gap-4 py-3'>
                             <div className='flex items-center gap-2'>
                                 <input type='radio' name='sortBy' checked={sortBy === 'asc'} onChange={handleOnChangeSortBy} value={"asc"} />
-                                <label className='text-slate-600'>Price - Low to High</label>
+                                <label className='text-slate-600'>ราคา - ต่ำ ไป สูง</label>
                             </div>
                             <div className='flex items-center gap-2'>
                                 <input type='radio' name='sortBy' checked={sortBy === 'dsc'} onChange={handleOnChangeSortBy} value={"dsc"} />
-                                <label className='text-slate-600'>Price - High to Low</label>
+                                <label className='text-slate-600'>ราคา - สูง ไป ต่ำ</label>
                             </div>
                         </form>
                     </div>
 
                     {/** filter by */}
                     <div>
-                        <h3 className='text-lg uppercase font-semibold text-slate-700 border-b pb-2 border-slate-300'>Category</h3>
+                        <h3 className='text-lg uppercase font-semibold text-slate-700 border-b pb-2 border-slate-300'>ประเภทสินค้า</h3>
                         <form className='text-sm flex flex-col gap-4 py-3'>
                             {productCategory.map((categoryName, index) => (
                                 <div className='flex items-center gap-2' key={index}>
@@ -161,7 +161,7 @@ const CategoryProduct = () => {
 
                 {/** right side ( product ) */}
                 <div className=''>
-                    <p className='font-semibold text-slate-800 text-xl my-4'>Search Results : {data.length}</p>
+                    <p className='font-semibold text-slate-800 text-xl my-4'>ผลลัพธ์ : {data.length}</p>
                     {!loading && data.length !== 0 && (
                         <div className="grid grid-cols-1 gap-4">
                             <VerticalCard data={data} loading={loading} />

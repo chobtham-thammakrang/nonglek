@@ -19,11 +19,11 @@ const ResetPassword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      toast.error('Passwords do not match');
+      toast.error('รหัสผ่านไม่ตรงกัน');
       return;
     }
     if (passwordStrength !== 'Strong' && passwordStrength !== 'Medium') {
-      toast.error('Please choose a stronger password');
+      toast.error('โปรดเลือกรหัสผ่านที่ปลอดภัยกว่านี้');
       return;
     }
     try {
@@ -71,7 +71,7 @@ const ResetPassword = () => {
   return (
     <div className="container mx-auto px-4 flex items-center justify-center h-screen">
       <div className="bg-white p-12 rounded-lg shadow-md w-full max-w-lg">
-        <h2 className="text-3xl font-bold mb-6">Reset Password</h2>
+        <h2 className="text-3xl font-bold mb-6">รีเซ็ตรหัสผ่าน</h2>
         <form onSubmit={handleSubmit}>
           <PasswordField
             label="New Password"
@@ -97,7 +97,7 @@ const ResetPassword = () => {
             className="bg-red-500 hover:bg-red-700 text-white font-bold py-3 px-6 rounded"
             type="submit"
           >
-            Reset Password
+            รีเซ็ตรหัสผ่าน
           </button>
         </form>
       </div>

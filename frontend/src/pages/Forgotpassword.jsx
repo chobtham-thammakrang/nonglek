@@ -16,7 +16,7 @@ const Forgotpassword = () => {
   const handleSubmit = useCallback(async (e) => {
     e.preventDefault();
     if (!validateEmail(email)) {
-      toast.error('Please enter a valid email address');
+      toast.error('ไม่มีบัญชีในระบบ');
       return;
     }
   
@@ -47,14 +47,14 @@ const Forgotpassword = () => {
         toast.success(data.message);
         navigate('/verify-otp', { state: { email } });
       } else {
-        toast.error(data.message || 'An error occurred. Please try again.');
+        toast.error(data.message || 'ผิดพลาด.  โปรดลองอีกครั้ง.');
       }
     } catch (error) {
       if (error.message === 'Request timed out') {
-        toast.error('Request timed out. Please try again.');
+        toast.error('หมดเวลาเชื่อมต่อ. โปรดลองอีกครั้ง.');
       } else {
         console.error('Error details:', error);
-        toast.error('An error occurred. Please try again.');
+        toast.error('ผิดพลาด. โปรดลองอีกครั้ง.');
       }
     } finally {
       setIsLoading(false);
@@ -74,7 +74,7 @@ const Forgotpassword = () => {
         </div>
         <div className='w-1/2 flex items-center justify-start ml-2'>
           <div className='bg-white p-12 rounded-lg shadow-md w-full max-w-lg'>
-            <h2 className='text-3xl font-bold mb-6'>Forgot Password</h2>
+            <h2 className='text-3xl font-bold mb-6'>ลืมรหัสผ่าน</h2>
             <form onSubmit={handleSubmit}>
               <InputField
                 label="Email"
@@ -93,7 +93,7 @@ const Forgotpassword = () => {
                 </button>
               </div>
             </form>
-            <p className='mt-4'>Remember your password? <Link to='/login' className='text-red-500 hover:text-red-800'>Log In</Link></p>
+            <p className='mt-4'>จำรหัสผ่านได้? <Link to='/login' className='text-red-500 hover:text-red-800'>เข้าสู่ระบบ</Link></p>
           </div>
         </div>
       </div>

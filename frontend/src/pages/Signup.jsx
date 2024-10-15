@@ -48,7 +48,7 @@ const Signup = () => {
 				</div>
 				<div className='w-1/2 flex items-center justify-start ml-2'>
 					<div className='bg-white p-12 rounded-lg shadow-md w-full max-w-lg'>
-						<h2 className='text-3xl font-bold mb-6'>Sign Up</h2>
+						<h2 className='text-3xl font-bold mb-6'>สมัครสมาชิก</h2>
 						<form onSubmit={handleOnSubmit}>
 							<InputField
 								label="Name"
@@ -82,11 +82,11 @@ const Signup = () => {
 							/>
 							<div className='flex items-center justify-between mt-6'>
 								<button className='bg-red-500 hover:bg-red-700 text-white font-bold py-3 px-6 rounded' type='submit'>
-									Sign Up
+									สมัครสมาชิก
 								</button>
 							</div>
 						</form>
-						<p className='mt-4'>Already have an account? <Link to='/login' className='text-red-500 hover:text-red-800'>Log In</Link></p>
+						<p className='mt-4'>เป็นสมาชิกแล้ว? <Link to='/login' className='text-red-500 hover:text-red-800'>เข้าสู่ระบบ</Link></p>
 					</div>
 				</div>
 			</div>

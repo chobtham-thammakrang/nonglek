@@ -12,7 +12,7 @@ const ChangePasswordModal = ({ onClose }) => {
     try {
       // Check if new password and confirm password match
       if (newPassword !== confirmPassword) {
-        toast.error('New password and confirm password do not match');
+        toast.error('รหัสผ่านไม่ตรงกัน');
         return;
       }
 
@@ -32,7 +32,7 @@ const ChangePasswordModal = ({ onClose }) => {
 
       const data = await response.json();
       console.log(data);
-      toast.success('Password changed successfully');
+      toast.success('เปลี่ยนรหัสผ่านสำเร็จ');
       onClose();
     } catch (err) {
       setError(err.message);
@@ -44,13 +44,13 @@ const ChangePasswordModal = ({ onClose }) => {
     <div className="fixed z-10 inset-0 overflow-y-auto">
       <div className="flex items-center justify-center min-h-screen">
         <div className="bg-white rounded-lg shadow-lg p-6">
-          <h2 className="text-lg font-bold mb-4">Change Password</h2>
+          <h2 className="text-lg font-bold mb-4">เปลี่ยนรหัสผ่าน</h2>
 
           {error && <p className="text-red-500 mb-4">{error}</p>}
 
           <div className="mb-4">
             <label htmlFor="oldPassword" className="block text-gray-700 font-bold mb-2">
-              Old Password
+              หรัสผ่านเก่า
             </label>
             <input
               type="password"
@@ -63,7 +63,7 @@ const ChangePasswordModal = ({ onClose }) => {
 
           <div className="mb-4">
             <label htmlFor="newPassword" className="block text-gray-700 font-bold mb-2">
-              New Password
+              หรัสผ่านใหม่
             </label>
             <input
               type="password"
@@ -76,7 +76,7 @@ const ChangePasswordModal = ({ onClose }) => {
 
           <div className="mb-4">
             <label htmlFor="confirmPassword" className="block text-gray-700 font-bold mb-2">
-              Confirm Password
+              ใส่รหัสผ่านอีกครั้ง
             </label>
             <input
               type="password"
@@ -92,7 +92,7 @@ const ChangePasswordModal = ({ onClose }) => {
               onClick={onClose}
               className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded mr-2"
             >
-              Cancel
+              ยกเลิก
             </button>
 
             <button
@@ -100,7 +100,7 @@ const ChangePasswordModal = ({ onClose }) => {
               disabled={!oldPassword || !newPassword || !confirmPassword}
               className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded"
             >
-              Change Password
+              เปลี่ยนรหัสผ่าน
             </button>
           </div>
         </div>

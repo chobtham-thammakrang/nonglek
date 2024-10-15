@@ -81,14 +81,14 @@ const AllProducts = () => {
       const data = await response.json();
       if (response.ok && data.success) {
         handleCategoryChange();
-        toast.success('Product deleted successfully');
+        toast.success('ลบสินค้าสำเร็จ');
       } else {
         console.error('Failed to delete product:', data.message);
-        toast.error(data.message || 'Failed to delete product');
+        toast.error(data.message || 'ลบสินค้าไม่สำเร็จ');
       }
     } catch (error) {
       console.error('Error deleting product:', error);
-      toast.error('Error deleting product');
+      toast.error('ลบสินค้าไม่สำเร็จ');
     } finally {
       setLoading(false);
       setDeleteConfirmation({ isOpen: false, productId: null, productName: '' });
@@ -99,19 +99,19 @@ const AllProducts = () => {
     <div className='flex flex-col'>
       {/* Header */}
       <div className='bg-white py-3 px-5 rounded-lg shadow-md flex items-center justify-between'>
-        <h2 className='font-bold text-3xl text-gray-700'>All Products</h2>
+        <h2 className='font-bold text-3xl text-gray-700'>สินค้าทั้งหมด</h2>
         <button
           className='border-2 border-red-600 hover:bg-red-600 hover:text-white transition-all px-4 py-2 rounded-lg text-red-600 font-semibold'
           onClick={() => setOpenUploadProduct(true)}
         >
-          Upload Product
+          สร้างสินค้า
         </button>
       </div>
 
       {/* Filter by category */}
       <div className='w-full bg-gray-50 p-6 rounded-lg shadow-md mt-4'>
         <h3 className='text-lg font-semibold text-gray-700 border-b pb-2 border-gray-300'>
-          Filter by Category
+          กรองสินค้าตามประเภท
         </h3>
         <form className='flex gap-4 flex-wrap py-3'>
           {productCategory.map((categoryName, index) => (
@@ -137,9 +137,11 @@ const AllProducts = () => {
       <div className='flex-grow px-4 mt-4'>
         <div className='flex items-center flex-wrap gap-6 py-5 h-[calc(100vh-300px)] overflow-y-scroll'>
           {loading ? (
-            <p className='text-lg text-gray-500'>Loading...</p>
+                <div className="flex justify-center items-center h-screen">
+                  <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-blue-500"></div>
+                </div>
           ) : allProducts.length === 0 ? (
-            <p className='text-lg text-gray-500'>No products found for the selected categories.</p>
+            <p className='text-lg text-gray-500'>ไม่พบสินค้าจากประเภทที่เลือก.</p>
           ) : (
             allProducts.map((product, index) => (
               <AdminProductCard
