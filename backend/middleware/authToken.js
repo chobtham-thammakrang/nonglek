@@ -7,7 +7,7 @@ async function authToken(req, res, next){
         // Check for Authorization header if token is not in cookies
         if (!token) {
             const authHeader = req.headers['authorization'];
-            if (authHeader && authHeader.startsWith('Bearer ')) {
+            if (authHeader && authHeader.startsWith('Bearer')) {
                 token = authHeader.split(' ')[1];
             }
         }
