@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import SummaryApi from '../common';
 import displayCurrency from '../helpers/displayCurrency';
 import { FaEdit } from 'react-icons/fa';
+import { getAuthToken } from "../utils/auth";
 
 const AllProductOrder = () => {
   const [orders, setOrders] = useState([]);
@@ -11,6 +12,7 @@ const AllProductOrder = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [editingOrder, setEditingOrder] = useState(null);
   const ordersPerPage = 10;
+  const token = getAuthToken();
 
   useEffect(() => {
     fetchOrders();
@@ -21,6 +23,9 @@ const AllProductOrder = () => {
       const response = await fetch(SummaryApi.getAllOrders.url, {
         method: SummaryApi.getAllOrders.method,
         credentials: 'include',
+        headers : {
+          'Authorization': `Bearer ${token}`
+        },
       });
       const data = await response.json();
       if (data.success) {
@@ -76,6 +81,7 @@ const AllProductOrder = () => {
         method: SummaryApi.updateOrderStatus.method,
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
         },
         credentials: 'include',
         body: JSON.stringify({ status: newStatus }),
@@ -97,6 +103,7 @@ const AllProductOrder = () => {
         method: SummaryApi.updateOrderShippingCost.method,
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
         },
         credentials: 'include',
         body: JSON.stringify({ shippingCost: Number(shippingCost) }),
@@ -121,6 +128,7 @@ const AllProductOrder = () => {
         method: SummaryApi.updateOrderAdditionalDetails.method,
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
         },
         credentials: 'include',
         body: JSON.stringify({ additionalDetails }),

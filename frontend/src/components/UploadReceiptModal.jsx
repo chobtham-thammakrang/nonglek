@@ -4,9 +4,11 @@ import SummaryApi from '../common';
 import { toast } from 'react-toastify';
 import displayCurrency from '../helpers/displayCurrency';
 import qr from '../assest/qrc.jpg';
+import { getAuthToken } from "../utils/auth";
 
 const UploadReceiptModal = ({ orderId, onClose, fetchOrders, isModal = true, order }) => {
   const [uploadingReceipt, setUploadingReceipt] = useState(false);
+  const token = getAuthToken();
 
   const handleReceiptUpload = async (file) => {
     setUploadingReceipt(true);
@@ -18,6 +20,7 @@ const UploadReceiptModal = ({ orderId, onClose, fetchOrders, isModal = true, ord
           method: SummaryApi.updateOrderReceiptImage.method,
           headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
           },
           credentials: 'include',
           body: JSON.stringify({ receiptImage: uploadedReceipt.secure_url }),

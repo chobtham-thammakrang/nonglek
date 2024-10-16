@@ -3,7 +3,7 @@ async function userLogout(req, res){
         const tokenOptions = {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            sameSite: 'none',
+            sameSite: 'lax',
             partitioned: true
         };
         

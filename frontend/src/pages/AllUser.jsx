@@ -4,6 +4,7 @@ import { toast } from 'react-toastify'
 import moment from 'moment'
 import { MdModeEdit } from 'react-icons/md'
 import ChangeUserRole from '../components/ChangeUserRole'
+import { getAuthToken } from "../utils/auth";
 
 const AllUser = () => {
 
@@ -15,12 +16,16 @@ const AllUser = () => {
         role : "",
         _id : ""
     })
+    const token = getAuthToken();
 
 
     const fetchAllUser = async () => {
         const fetchData = await fetch(SummaryApi.allUser.url,{
             method: SummaryApi.allUser.method,
-            credentials: 'include'
+            credentials: 'include',
+            headers : {
+                'Authorization': `Bearer ${token}`
+            },
         })
         const dataResponse = await fetchData.json()
         if(dataResponse.success){

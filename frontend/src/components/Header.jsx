@@ -9,7 +9,7 @@ import SummaryApi from '../common'
 import { setUserDetails } from '../store/userSlice'
 import ROLE from '../common/role'
 import Context from '../context/index'
-import { setAuthToken } from '../utils/auth'
+import { setAuthToken, getAuthToken } from '../utils/auth'
 
 const Header = () => {
   const user = useSelector(state => state?.user?.user)
@@ -17,12 +17,16 @@ const Header = () => {
   const [menuDisplay, setMenuDisplay] = useState(false)
   const context = useContext(Context)
   const navigate = useNavigate()
+  const token = getAuthToken();
 
   const handleLogout = async () => {
     try {
       const fetchData = await fetch(SummaryApi.logout_user.url, {
         method: SummaryApi.logout_user.method,
-        credentials: 'include'
+        credentials: 'include',
+        headers : {
+          'Authorization': `Bearer ${token}`
+        },
       });
   
       if (fetchData.status === 401) {

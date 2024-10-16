@@ -7,6 +7,7 @@ import DisplayImage from './DisplayImage'
 import { MdDelete } from 'react-icons/md'
 import SummaryApi from '../common/index'
 import { toast } from 'react-toastify'
+import { getAuthToken } from "../utils/auth";
 
 const UploadProduct = ({
     onClose,
@@ -22,6 +23,7 @@ const UploadProduct = ({
     })
     const [openFullScreenImage, setOpenFullScreenImage] = useState(false)
     const [fullScreenImage, setFullScreenImage] = useState("")
+    const token = getAuthToken();
 
     const handleOnChange = (e) => {
         const { name, value } = e.target
@@ -66,6 +68,7 @@ const UploadProduct = ({
             credentials: "include",
             headers: {
                 "Content-Type": "application/json",
+                'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify(data)
         })

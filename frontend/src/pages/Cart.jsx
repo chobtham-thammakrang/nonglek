@@ -4,6 +4,7 @@ import Context from '../context'
 import displayCurrency from '../helpers/displayCurrency'
 import { MdDelete } from "react-icons/md";
 import { Link } from 'react-router-dom'
+import { getAuthToken } from "../utils/auth";
 
 const Cart = () => {
     const [data,setData] = useState([])
@@ -11,14 +12,17 @@ const Cart = () => {
     const context = useContext(Context)
     const loadingCart = new Array(4).fill(null)
 
+    const token = getAuthToken();
 
     const fetchData = async() =>{
+        // const token = localStorage.getItem('authToken');
         
         const response = await fetch(SummaryApi.addToCartProductView.url,{
             method : SummaryApi.addToCartProductView.method,
             credentials : 'include',
             headers : {
-                "content-type" : 'application/json'
+                "content-type" : 'application/json',
+                'Authorization': `Bearer ${token}`
             },
         })
        
@@ -48,7 +52,8 @@ const Cart = () => {
             method : SummaryApi.updateCartProduct.method,
             credentials : 'include',
             headers : {
-                "content-type" : 'application/json'
+                "content-type" : 'application/json',
+                'Authorization': `Bearer ${token}`
             },
             body : JSON.stringify(
                 {   
@@ -73,7 +78,8 @@ const Cart = () => {
                 method : SummaryApi.updateCartProduct.method,
                 credentials : 'include',
                 headers : {
-                    "content-type" : 'application/json'
+                    "content-type" : 'application/json',
+                    'Authorization': `Bearer ${token}`
                 },
                 body : JSON.stringify(
                     {   
@@ -97,7 +103,8 @@ const Cart = () => {
             method : SummaryApi.deleteCartProduct.method,
             credentials : 'include',
             headers : {
-                "content-type" : 'application/json'
+                "content-type" : 'application/json',
+                'Authorization': `Bearer ${token}`
             },
             body : JSON.stringify(
                 {   
