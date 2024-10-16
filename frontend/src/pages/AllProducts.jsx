@@ -5,6 +5,7 @@ import AdminProductCard from '../components/AdminProductCard';
 import productCategory from '../helpers/productCategory';
 import DeleteProductConfirmation from '../components/DeleteProductConfirmation';
 import { toast } from 'react-toastify';
+import { getAuthToken } from "../utils/auth";
 
 const AllProducts = () => {
   const [openUploadProduct, setOpenUploadProduct] = useState(false);
@@ -12,6 +13,8 @@ const AllProducts = () => {
   const [selectCategory, setSelectCategory] = useState({});
   const [loading, setLoading] = useState(false);
   const [deleteConfirmation, setDeleteConfirmation] = useState({ isOpen: false, productId: null, productName: '' });
+
+  const token = getAuthToken();
 
   const handleCategoryChange = useCallback(() => {
     const selectedCategories = Object.keys(selectCategory).filter(
@@ -77,6 +80,9 @@ const AllProducts = () => {
       const response = await fetch(`${SummaryApi.deleteProduct.url}/${productId}`, {
         method: 'DELETE',
         credentials: 'include',
+        headers : {
+          'Authorization': `Bearer ${token}`
+        },
       });
       const data = await response.json();
       if (response.ok && data.success) {

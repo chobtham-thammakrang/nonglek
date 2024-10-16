@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import SummaryApi from '../common';
 import { toast } from 'react-toastify';
+import { getAuthToken } from "../utils/auth";
 
 const ChangePasswordModal = ({ onClose }) => {
   const [oldPassword, setOldPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
+  const token = getAuthToken();
 
   const handleChangePassword = async () => {
     try {
@@ -20,6 +22,7 @@ const ChangePasswordModal = ({ onClose }) => {
         method: SummaryApi.changePassword.method,
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({ oldPassword, newPassword }),
         credentials: 'include',

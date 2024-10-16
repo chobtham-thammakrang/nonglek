@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import Context from '../context';
 import SummaryApi from '../common';
 import displayCurrency from '../helpers/displayCurrency';
+import { getAuthToken } from "../utils/auth";
 
 const Checkout = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -23,6 +24,8 @@ const Checkout = () => {
   const navigate = useNavigate();
   const { fetchUserAddToCart } = useContext(Context);
 
+  const token = getAuthToken();
+
   useEffect(() => {
     fetchCartItems();
   }, []);
@@ -33,7 +36,8 @@ const Checkout = () => {
         method: SummaryApi.addToCartProductView.method,
         credentials: 'include',
         headers: {
-          "content-type": 'application/json'
+          "content-type": 'application/json',
+          "Authorization": `Bearer ${token}`
         },
       });
       const responseData = await response.json();
@@ -68,6 +72,9 @@ const Checkout = () => {
         method: 'POST',
         credentials: 'include',
         body: formData,
+        headers: {
+          "Authorization": `Bearer ${token}`
+        },
       });
   
       if (!response.ok) {

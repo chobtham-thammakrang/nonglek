@@ -3,6 +3,7 @@ import SummaryApi from '../common';
 import displayCurrency from '../helpers/displayCurrency';
 import { FaEdit } from 'react-icons/fa';
 import UploadReceiptModal from '../components/UploadReceiptModal';
+import { getAuthToken } from "../utils/auth";
 
 
 const ProductOrder = () => {
@@ -11,6 +12,7 @@ const ProductOrder = () => {
   const [editingOrder, setEditingOrder] = useState(null);
   const [showUploadReceiptModal, setShowUploadReceiptModal] = useState(false);
   const [selectedOrderId, setSelectedOrderId] = useState(null);
+  const token = getAuthToken();
 
   const handlePaymentButtonClick = (orderId) => {
     setSelectedOrderId(orderId);
@@ -31,6 +33,9 @@ const ProductOrder = () => {
       const response = await fetch(SummaryApi.getUserOrders.url, {
         method: SummaryApi.getUserOrders.method,
         credentials: 'include',
+        headers : {
+          "Authorization": `Bearer ${token}`
+        },
       });
       const data = await response.json();
       if (data.success) {
@@ -50,6 +55,7 @@ const ProductOrder = () => {
         method: SummaryApi.updateOrderAdditionalDetails.method,
         headers: {
           'Content-Type': 'application/json',
+          "Authorization": `Bearer ${token}`
         },
         credentials: 'include',
         body: JSON.stringify({ additionalDetails }),

@@ -3,6 +3,7 @@ import ROLE from '../common/role'
 import { IoMdClose } from 'react-icons/io'
 import SummaryApi from '../common/index'
 import { toast } from 'react-toastify'
+import { getAuthToken } from "../utils/auth";
 
 
 const ChangeUserRole = ({
@@ -14,6 +15,7 @@ const ChangeUserRole = ({
     callFunc
 }) => {
     const [userRole, setUserRole] = useState(role)
+    const token = getAuthToken();
 
     const handleOnChangeSelect = (e) => {
         setUserRole(e.target.value)
@@ -24,7 +26,8 @@ const ChangeUserRole = ({
             method : SummaryApi.updateUser.method,
             credentials : "include",
             headers : {
-                "Content-Type" : "application/json"
+                "Content-Type" : "application/json",
+                'Authorization': `Bearer ${token}`
             },
             body : JSON.stringify({
                 userId : userId,
