@@ -124,15 +124,16 @@ const CategoryManagement = () => {
       <Modal
         isOpen={isModalOpen}
         onRequestClose={() => setIsModalOpen(false)}
-        className="bg-white p-6 rounded-lg shadow-lg max-w-md mx-auto"
+        className="bg-white p-6 rounded-lg shadow-lg max-w-md mx-auto absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" 
         contentLabel="Category Modal"
+        
       >
         <h2 className="text-xl font-semibold mb-4">
-          {isEditing ? 'Edit Category' : 'Add New Category'}
+          {isEditing ? 'แก้ไขหมวดหมู่' : 'เพิ่มหมวดหมู่ใหม่'}
         </h2>
         <input
           type="text"
-          placeholder="Category Value"
+          placeholder="หมวดหมู่"
           className="w-full border px-3 py-2 rounded mb-4"
           value={newCategory.value}
           onChange={(e) => setNewCategory({ ...newCategory, value: e.target.value, label: e.target.value})}
@@ -157,7 +158,7 @@ const CategoryManagement = () => {
         {categories.map(category => (
           <li 
             key={category._id} 
-            className="flex justify-between items-center bg-gray-100 p-4 rounded shadow"
+            className="flex justify-between items-center bg-white p-4 rounded shadow"
           >
             <div>
               <span className="font-medium">{category.value}</span>
