@@ -37,6 +37,13 @@ const updateOrderShippingCost = require('../controller/order/updateOrderShipping
 const updateOrderAdditionalDetails = require('../controller/order/updateOrderAdditionalDetails');
 const updateOrderReceiptImage = require('../controller/order/updateOrderReceiptImage')
 
+const {
+    getCategories,
+    addCategory,
+    updateCategory,
+    deleteCategory
+} = require('../controller/product/productCategoryController');
+
 // user routes
 router.post('/signup', userSignUpController);
 router.post('/signin', userSignInController);
@@ -80,5 +87,11 @@ router.put('/update-order-status/:orderId', authToken, updateOrderStatus);
 router.put('/update-order-shipping-cost/:orderId', authToken, updateOrderShippingCost);
 router.put('/update-order-additional-details/:orderId', authToken, updateOrderAdditionalDetails);
 router.put('/update-order-receipt-image/:orderId', authToken, updateOrderReceiptImage);
+
+// Product category routes
+router.get('/categories', getCategories);
+router.post('/categories', authToken, addCategory);
+router.put('/categories', authToken, updateCategory);
+router.delete('/categories/:id', authToken, deleteCategory);
 
 module.exports = router

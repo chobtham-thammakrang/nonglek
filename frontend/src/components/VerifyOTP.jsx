@@ -99,7 +99,7 @@ const VerifyOTP = () => {
           </div>
           <div className="mb-4">
             <p className="text-sm text-gray-600">
-              Time remaining: {Math.floor(countdown / 60)}:{countdown % 60 < 10 ? '0' : ''}{countdown % 60}
+              เวลาคงเหลือ: {Math.floor(countdown / 60)}:{countdown % 60 < 10 ? '0' : ''}{countdown % 60}
             </p>
           </div>
 

@@ -30,10 +30,10 @@ const UserDetail = () => {
         <div className="user-info w-full p-4">
           <h2 className="text-lg font-bold mb-2">ข้อมูลผู้ใช้</h2>
           <p className="text-gray-600">
-            <strong>Name:</strong> {user?.name}
+            <strong>ชื่อ:</strong> {user?.name}
           </p>
           <p className="text-gray-600">
-            <strong>Email:</strong> {user?.email}
+            <strong>อีเมล:</strong> {user?.email}
           </p>
         </div>
         <div className="user-actions w-full p-4">

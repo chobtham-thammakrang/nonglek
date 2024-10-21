@@ -36,7 +36,7 @@ const Signup = () => {
 
 			}
 		}else{
-			toast.error("Password and Confirm Password do not match")
+			toast.error("รหัสผ่านและยืนยันรหัสผ่านไม่ตรงกัน")
 		}
 	}
 

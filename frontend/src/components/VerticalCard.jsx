@@ -39,19 +39,28 @@ const VerticalCard = ({loading,data = []}) => {
          ) : (
              data.map((product,index)=>{
                  return(
-                     <Link key={product._id} to={"/product/"+product?._id} className='w-full min-w-[280px]  md:min-w-[300px] max-w-[280px] md:max-w-[300px]  bg-white rounded-sm shadow ' onClick={scrollTop}>
-                         <div className='bg-slate-200 h-48 p-4 min-w-[280px] md:min-w-[145px] flex justify-center items-center'>
-                             <img src={product?.productImage[0]} className='object-scale-down h-full hover:scale-110 transition-all mix-blend-multiply'/>
-                         </div>
-                         <div className='p-4 grid gap-3'>
-                             <h2 className='font-medium text-base md:text-lg text-ellipsis line-clamp-1 text-black'>{product?.productName}</h2>
-                             <p className='capitalize text-slate-500'>{product?.category}</p>
-                             <div className='flex gap-3'>
-                                 <p className='text-red-600 font-medium'>{ displayCurrency(product?.price) }</p>
-                             </div>
-                             <button className='text-sm bg-red-600 hover:bg-red-700 text-white px-3 py-0.5 rounded-full' onClick={(e)=>handleAddToCart(e,product?._id)}>เพิ่มลงในตะกร้า</button>
-                         </div>
-                     </Link>
+                        <Link key={product._id} to={"/product/"+product?._id} className='w-full min-w-[280px]  md:min-w-[300px] max-w-[280px] md:max-w-[300px]  bg-white rounded-sm shadow ' onClick={scrollTop}>
+                            <div className='bg-slate-200 h-48 p-4 min-w-[280px] md:min-w-[145px] flex justify-center items-center'>
+                                <img src={product?.productImage[0]} className='object-scale-down h-full hover:scale-110 transition-all mix-blend-multiply'/>
+                            </div>
+                            <div className='p-4 grid gap-3'>
+                                <h2 className='font-medium text-base md:text-lg text-ellipsis line-clamp-1 text-black'>{product?.productName}</h2>
+                                <p className='capitalize text-slate-500'>{product?.category}</p>
+                                <div className='flex gap-3'>
+                                    <p className='text-red-600 font-medium'>{ displayCurrency(product?.price) }</p>
+                                </div>
+                                <p className='text-xl text-red-600'>
+                                    {product?.stock > 0 ? `คงเหลือ: ${product?.stock}` : 'สินค้าหมด'}
+                                </p>
+                                <button
+                                    className={`text-sm ${product?.stock > 0 ? 'bg-red-600 hover:bg-red-700' : 'bg-gray-400 cursor-not-allowed'} text-white px-3 py-0.5 rounded-full`}
+                                    onClick={(e) => product?.stock > 0 && handleAddToCart(e, product?._id)}
+                                    disabled={product?.stock === 0}
+                                >
+                                    เพิ่มลงในตะกร้า
+                                </button>
+                            </div>
+                        </Link>
                  )
              })
          )

@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { FaBars, FaTimes } from 'react-icons/fa'
+import SummaryApi from '../common/index'
 
 const Navbar = () => {
   const [showProductDropdown, setShowProductDropdown] = useState(false)
@@ -8,12 +9,30 @@ const Navbar = () => {
   const navigate = useNavigate()
   const location = useLocation()
   const dropdownRef = useRef(null)
+  const [productCategories, setProductCategories] = useState([])
 
   const handleProductSelect = (category) => {
     navigate(`/product-category?category=${category}`)
     setShowProductDropdown(false)
     setIsMenuOpen(false)
   }
+
+  useEffect(() => {
+    // Fetch product categories from the database
+    const fetchProductCategories = async () => {
+      try {
+        const response = await fetch(SummaryApi.getCategories.url) // Adjust the API endpoint as needed
+        const result = await response.json()
+        if (result.success) {
+          setProductCategories(result.data);
+        }
+      } catch (error) {
+        console.error('Error fetching product categories:', error)
+      }
+    }
+
+    fetchProductCategories()
+  }, [])
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -56,17 +75,21 @@ const Navbar = () => {
           {showProductDropdown && (
             <div className="absolute left-0 mt-1 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
               <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                <Link to="/product-category" className='block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100' role="menuitem" onClick={() => setIsMenuOpen(false)}>สินค้าทั้งหมด</Link>
-                <button onClick={() => handleProductSelect('ศาลพระภูมิ')} className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">ศาลพระภูมิ</button>
-                <button onClick={() => handleProductSelect('ศาลพระพรหม')} className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">ศาลพระพรหม</button>
-                <button onClick={() => handleProductSelect('ศาลเจ้าที่')} className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">ศาลเจ้าที่</button>
-                <button onClick={() => handleProductSelect('โต๊ะไหว้')} className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">โต๊ะไหว้</button>
-                <button onClick={() => handleProductSelect('โต๊ะหินอ่อน')} className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">โต๊ะหินอ่อน</button>
-                <button onClick={() => handleProductSelect('อุปกรณ์ประกอบศาล')} className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">อุปกรณ์ประกอบศาล</button>
-                <button onClick={() => handleProductSelect('กระถางต้นไม้')} className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">กระถางต้นไม้</button>
+              <Link to="/product-category" className='block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100' role="menuitem" onClick={() => setIsMenuOpen(false)}>สินค้าทั้งหมด</Link>
+                {productCategories.map((category) => (
+                  <button
+                    key={category._id} // Assuming each category has a unique 'id'
+                    onClick={() => handleProductSelect(category.value)}
+                    className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    role="menuitem"
+                  >
+                    {category.value}
+                  </button>
+                ))}
               </div>
             </div>
           )}
+          
         </div>
         <Link to="/facts" className='px-4 py-1 text-black hover:bg-black hover:text-white active:bg-black active:text-white transition duration-300' onClick={() => setIsMenuOpen(false)}>สาระน่ารู้</Link>
         <Link to="/about-us" className='px-4 py-1 text-black hover:bg-black hover:text-white active:bg-black active:text-white transition duration-300' onClick={() => setIsMenuOpen(false)}>เกี่ยวกับเรา</Link>

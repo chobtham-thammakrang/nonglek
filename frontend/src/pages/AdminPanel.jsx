@@ -16,7 +16,7 @@ const AdminPanel = () => {
         }
         
         if (user?.role !== ROLE.ADMIN) {
-            toast.error("You are not authorized to access this page");
+            toast.error("คุณไม่มีสิทธิเข้าถึงหน้านี้");
             navigate("/");
         }
     }, [user, navigate]);
@@ -38,7 +38,7 @@ const AdminPanel = () => {
 
             <div>
                 <nav className='grid p-4'>
-                    <Link to={"all-users"} className='px-2 py-1 hover:bg-slate-100'>ผู้ใช้ทั้งหมดs</Link>
+                    <Link to={"all-users"} className='px-2 py-1 hover:bg-slate-100'>ผู้ใช้ทั้งหมด</Link>
                     <Link to={"all-products"} className='px-2 py-1 hover:bg-slate-100'>สินค้าทั้หมด</Link>
                     <Link to={"all-product-Order"} className='px-2 py-1 hover:bg-slate-100'>รายการสั่งซื้อทั้งหมด</Link>
                 </nav>

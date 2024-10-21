@@ -77,9 +77,18 @@ const HorizontalCardProduct = ({category, heading}) => {
                             <h2 className='md:text-lg font-medium text-base text-ellipsis line-clamp-1 text-black'>{product?.productName}</h2>
                             <p className='text-sm text-slate-500'>{product?.category}</p>
                             <div className='flex items-center gap-3'>
-                                <p className='text-base font-medium'>{ displayCurrency(product?.price)}</p>
+                                <p className='text-base font-medium'>{displayCurrency(product?.price)}</p>
+                                <p className='text-xs text-red-600'>
+                                    {product?.stock > 0 ? `คงเหลือ: ${product?.stock}` : 'สินค้าหมด'}
+                                </p>
                             </div>
-                            <button className='bg-red-600 hover:bg-red-700 text-white px-3 py-0.5 rounded-full text-sm' onClick={(e)=>handleAddToCart(e,product?._id)}>เพิ่มลงตะกร้า</button>
+                            <button
+                                className={`text-sm ${product?.stock > 0 ? 'bg-red-600 hover:bg-red-700' : 'bg-gray-400 cursor-not-allowed'} text-white px-3 py-0.5 rounded-full`}
+                                onClick={(e) => product?.stock > 0 && handleAddToCart(e, product?._id)}
+                                disabled={product?.stock === 0}
+                            >
+                                เพิ่มลงตะกร้า
+                            </button>
                         </div>
                     </Link>
                 ))

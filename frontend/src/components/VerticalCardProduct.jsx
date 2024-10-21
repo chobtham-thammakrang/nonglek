@@ -88,7 +88,16 @@ const VerticalCardProduct = ({category, heading}) => {
                                     <div className='flex gap-3'>
                                         <p className='text-red-600 font-medium'>{ displayCurrency(product?.price) }</p>
                                     </div>
-                                    <button className='text-sm bg-red-600 hover:bg-red-700 text-white px-3 py-0.5 rounded-full' onClick={(e)=>handleAddToCart(e,product?._id)}>เพิ่มลงในตะกร้า</button>
+                                    <p className='text-xl text-red-600'>
+                                        {product?.stock > 0 ? `คงเหลือ: ${product?.stock}` : 'สินค้าหมด'}
+                                    </p>
+                                    <button
+                                        className={`text-sm ${product?.stock > 0 ? 'bg-red-600 hover:bg-red-700' : 'bg-gray-400 cursor-not-allowed'} text-white px-3 py-0.5 rounded-full`}
+                                        onClick={(e) => product?.stock > 0 && handleAddToCart(e, product?._id)}
+                                        disabled={product?.stock === 0}
+                                    >
+                                        เพิ่มลงในตะกร้า
+                                    </button>
                                 </div>
                             </Link>
                         )

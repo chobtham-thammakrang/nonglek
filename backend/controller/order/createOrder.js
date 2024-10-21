@@ -32,7 +32,15 @@ const createOrder = async (req, res) => {
       if (!product) {
         throw new Error(`Product not found: ${item.productId}`);
       }
+      if (product.stock < item.quantity) {
+        throw new Error(`Insufficient stock for product: ${item.productId}`);
+      }
       totalAmount += product.price * item.quantity;
+
+      // Update stock
+      product.stock -= item.quantity;
+      await product.save();
+      
       return {
         productId: item.productId,
         quantity: item.quantity,

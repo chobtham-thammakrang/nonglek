@@ -47,7 +47,7 @@ const Login = () => {
             }
         } catch (error) {
             console.error("Login error:", error);
-            toast.error("An error occurred during login");
+            toast.error("เกิดข้อผิดพลาดระหว่างการเข้าสู่ระบบ");
         }
     };
 

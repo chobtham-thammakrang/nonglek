@@ -1,36 +1,18 @@
 import React from 'react';
 import { FaLine, FaFacebook } from 'react-icons/fa';
-import banner from '../assest/homeImg/01.jpg'
 
 const Contact = () => {
   return (
     <div className="bg-gray-100">
-      {/* Banner Section */}
-      <div className="relative bg-white">
-        <img
-          src={banner}
-          alt="Banner"
-          className="w-full h-96 object-cover"
-        />
-        <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-40 flex justify-center items-center">
-          <div className="text-center">
-            <h1 className="text-5xl text-white font-bold mb-4">
-              ติดต่อสอบถาม <br/>น้องเล็ก ศาลพระภูมิ นครปฐม
-            </h1>
-            <p className="text-2xl text-white mt-4">โทร 0861607129</p>
-          </div>
-        </div>
-      </div>
-
       {/* Contact Section */}
       <div className="p-6 max-w-4xl mx-auto bg-white shadow-md rounded-lg mt-8">
         <h2 className="text-4xl font-bold text-center mb-6">ติดต่อ</h2>
 
         {/* Contact Info */}
         <div className="text-center">
-          <p className="text-2xl font-semibold">น้องเล็ก ศาลพระภูมิ นครปฐม</p>
-          <p className="text-xl">ที่อยู่: 17 หมู่ 3 ตำบล ศรีมหาโพธิ์ อำเภอนครชัยศรี นครปฐม 73120</p>
-          <p className="text-xl">เบอร์โทร: 086-1607-129</p>
+          <p className="text-3xl font-semibold">น้องเล็ก ศาลพระภูมิ นครปฐม</p>
+          <p className="text-2xl">ที่อยู่: 17 หมู่ 3 ตำบล ศรีมหาโพธิ์ อำเภอนครชัยศรี นครปฐม 73120</p>
+          <p className="text-2xl">เบอร์โทร: 086-1607-129</p>
 
           {/* Social Media Links with Icons */}
           <div className="flex justify-center space-x-6 mt-6">

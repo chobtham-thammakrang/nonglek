@@ -53,6 +53,13 @@ const Checkout = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const outOfStockItems = cartItems.filter(item => item.productId?.stock === 0);
+    if (outOfStockItems.length > 0) {
+      toast.error('สินค้าบางรายการหมดสต็อก กรุณาลบออกก่อนดำเนินการต่อ');
+      return;
+    }
+
     setIsSubmitting(true);
   
     try {
@@ -88,7 +95,7 @@ const Checkout = () => {
       navigate('/order-confirmation', { state: { orderId: data.orderId } });
     } catch (error) {
       console.error('สร้างรายการสั่งซื้อ ล้มเหลว:', error);
-      toast.error(error.message || 'An error occurred while placing the order');
+      toast.error(error.message || 'เกิดข้อผิดพลาดขณะทำการสั่งซื้อ');
     } finally {
       setIsSubmitting(false); 
     }
@@ -124,9 +131,16 @@ const Checkout = () => {
                     alt={item.productId?.productName}
                     className="w-16 h-16 object-cover rounded"
                   />
-                  <span className="text-gray-600">{item.productId?.productName} x {item.quantity}</span>
+                  <span className="text-gray-600">
+                    {item.productId?.productName} x {item.quantity}
+                    {item.productId?.stock === 0 && (
+                      <span className="text-red-500 ml-2">(สินค้าหมด)</span>
+                    )}
+                  </span>
                 </div>
-                <span className="text-gray-800 font-medium">{displayCurrency((item.productId?.price || 0) * item.quantity)}</span>
+                <span className="text-gray-800 font-medium">
+                  {displayCurrency((item.productId?.price || 0) * item.quantity)}
+                </span>
               </div>
             ))}
             <div className="text-xl font-bold text-right mt-4">

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import productCategory from '../helpers/productCategory'
 import VerticalCard from '../components/VerticalCard'
 import SummaryApi from '../common'
 
 const CategoryProduct = () => {
+    const [categories, setCategories] = useState([]);
     const [data, setData] = useState([])
     const navigate = useNavigate()
     const [loading, setLoading] = useState(false)
@@ -65,6 +65,22 @@ const CategoryProduct = () => {
             [value]: checked,
         }));
     };
+
+    useEffect(() => {
+        const fetchCategories = async () => {
+            try {
+                const response = await fetch(SummaryApi.getCategories.url);
+                const result = await response.json();
+                if (result.success) {
+                    setCategories(result.data);
+                }
+            } catch (error) {
+                console.error('Error fetching categories:', error);
+            }
+        };
+
+        fetchCategories();
+    }, []);
 
     // อัปเดต filterCategoryList จาก URL และเรียก fetchData เมื่อมีการโหลดหน้าใหม่
     useEffect(() => {
@@ -141,7 +157,7 @@ const CategoryProduct = () => {
                     <div>
                         <h3 className='text-lg uppercase font-semibold text-slate-700 border-b pb-2 border-slate-300'>ประเภทสินค้า</h3>
                         <form className='text-sm flex flex-col gap-4 py-3'>
-                            {productCategory.map((categoryName, index) => (
+                            {categories.map((categoryName, index) => (
                                 <div className='flex items-center gap-2' key={index}>
                                     <input
                                         type='checkbox'

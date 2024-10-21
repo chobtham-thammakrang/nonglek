@@ -89,7 +89,7 @@ const Forgotpassword = () => {
                   type='submit'
                   disabled={isLoading}
                 >
-                  {isLoading ? 'In progress...' : 'Reset Password'}
+                  {isLoading ? 'อยู่ระหว่างดำเนินการ...' : 'รีเซ็ตรหัสผ่าน'}
                 </button>
               </div>
             </form>

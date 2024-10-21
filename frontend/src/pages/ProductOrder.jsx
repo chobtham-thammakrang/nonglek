@@ -141,7 +141,7 @@ const ProductOrder = () => {
                           rows="3"
                         />
                       ) : (
-                        <p className="text-lg">{order.additionalDetails || 'No additional details provided'}</p>
+                        <p className="text-lg">{order.additionalDetails || 'ไม่มีการให้รายละเอียดเพิ่มเติม'}</p>
                       )}
                     </div>
                   )}
@@ -162,7 +162,7 @@ const ProductOrder = () => {
                         )}
                         <div>
                           {/* Render the product name only if item.productId is not null */}
-                          <p className="font-semibold text-xl mb-2">{item.productId ? item.productId.productName : 'Product not found'}</p>
+                          <p className="font-semibold text-xl mb-2">{item.productId ? item.productId.productName : 'ไม่พบสินค้า'}</p>
                           <p className="text-gray-600">จำนวน: {item.quantity}</p>
                           {/* Render the product price only if item.productId is not null */}
                           <p className="text-gray-600">ราคา: {item.productId ? displayCurrency(item.productId.price) : 'N/A'}</p>

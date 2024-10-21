@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { CgClose } from 'react-icons/cg'
-import productCategory from '../helpers/productCategory'
 import { FaCloudUploadAlt } from 'react-icons/fa'
 import uploadImage from '../helpers/uploadImage'
 import DisplayImage from './DisplayImage'
@@ -14,6 +13,7 @@ const AdminEditProduct = ({
     productData,
     fetchdata
 }) => {
+    const [categories, setCategories] = useState([]);
     const [data, setData] = useState({
         ...productData,
         productName: productData?.productName,
@@ -22,10 +22,27 @@ const AdminEditProduct = ({
         productImage: productData?.productImage || [],
         description: productData?.description,
         price: productData?.price,
+        stock: productData?.stock,
     })
     const [openFullScreenImage, setOpenFullScreenImage] = useState(false)
     const [fullScreenImage, setFullScreenImage] = useState("")
     const token = getAuthToken();
+
+    useEffect(() => {
+        const fetchCategories = async () => {
+            try {
+                const response = await fetch(SummaryApi.getCategories.url);
+                const result = await response.json();
+                if (result.success) {
+                    setCategories(result.data);
+                }
+            } catch (error) {
+                console.error('Error fetching categories:', error);
+            }
+        };
+
+        fetchCategories();
+    }, []);
 
     const handleOnChange = (e) => {
         const { name, value } = e.target
@@ -78,7 +95,7 @@ const AdminEditProduct = ({
             }
         } catch (error) {
             console.error("Error updating product:", error)
-            toast.error("Failed to update product. Please try again.")
+            toast.error("ไม่สามารถอัปเดตผลิตภัณฑ์ได้ กรุณาลองอีกครั้ง")
         }
     }
 
@@ -120,7 +137,7 @@ const AdminEditProduct = ({
                     <label htmlFor="category" className='mt-3'>ประเภทสินค้า : </label>
                     <select required value={data.category} name='category' onChange={handleOnChange} className='p-2 bg-slate-100 border rounded'>
                         <option value={""}>เลือกประเภทสินค้า</option>
-                        {productCategory.map((el, index) => (
+                        {categories.map((el, index) => (
                             <option value={el.value} key={el.value + index}>{el.label}</option>
                         ))}
                     </select>
@@ -175,6 +192,18 @@ const AdminEditProduct = ({
                         required
                     />
 
+                    <label htmlFor="stock" className='mt-3'>จำนวนคงเหลือ: </label>
+                    <input
+                        type="number"
+                        id='stock'
+                        placeholder='Enter Product Stock'
+                        name='stock'
+                        value={data.stock}
+                        onChange={handleOnChange}
+                        className='p-2 bg-slate-100 border rounded'
+                        required
+                    />
+
                     <label htmlFor="description" className='mt-3'>คำอธิบายสินค้า : </label>
                     <textarea
                         id='description'
@@ -186,7 +215,7 @@ const AdminEditProduct = ({
                         className='h-28 p-2 bg-slate-100 border rounded'
                     />
                     
-                    <button className='px-3 py-2 bg-red-600 text-white rounded mb-10 hover:bg-red-700'>เพิ่มสินค้า</button>
+                    <button className='px-3 py-2 bg-red-600 text-white rounded mb-10 hover:bg-red-700'>แก้ไขสินค้า</button>
                 </form> 
             </div>
             {openFullScreenImage && (

@@ -33,7 +33,7 @@ const Header = () => {
         setAuthToken(null);
         dispatch(setUserDetails(null));
         localStorage.removeItem('authToken');
-        toast.error('Your session has expired. Please log in again.');
+        toast.error('เซสชั่นของคุณหมดเวลาแล้ว กรุณาเข้าสู่ระบบอีกครั้ง');
         navigate("/login");
         return;
       }
@@ -49,7 +49,7 @@ const Header = () => {
       }
     } catch (error) {
       console.error("Logout error:", error);
-      toast.error("An error occurred during logout");
+      toast.error("เกิดข้อผิดพลาดระหว่างการออกจากระบบ");
     }
   };
 

@@ -194,11 +194,26 @@ const ProductDetails = () => {
                 </div>
 
                 <div className='flex items-center gap-3 my-2'>
-                  <button className='border-2 border-red-600 rounded px-3 py-1 min-w-[120px] text-red-600 font-medium hover:bg-red-600 hover:text-white' onClick={(e)=>handleBuyProduct(e,data?._id)}>Buy</button>
-                  <button className='border-2 border-red-600 rounded px-3 py-1 min-w-[120px] font-medium text-white bg-red-600 hover:text-red-600 hover:bg-white' onClick={(e)=>handleAddToCart(e,data?._id)}>Add To Cart</button>
+                  <button
+                    className={`border-2 ${data?.stock > 0 ? 'border-red-600 text-red-600 hover:bg-red-600 hover:text-white' : 'border-gray-400 text-gray-400 cursor-not-allowed'} rounded px-3 py-1 min-w-[120px] font-medium`}
+                    onClick={(e) => data?.stock > 0 && handleBuyProduct(e, data?._id)}
+                    disabled={data?.stock === 0}
+                  >
+                    ซื้อ
+                  </button>
+                  <button
+                    className={`border-2 ${data?.stock > 0 ? 'border-red-600 bg-red-600 text-white hover:text-red-600 hover:bg-white' : 'border-gray-400 bg-gray-400 text-white cursor-not-allowed'} rounded px-3 py-1 min-w-[120px] font-medium`}
+                    onClick={(e) => data?.stock > 0 && handleAddToCart(e, data?._id)}
+                    disabled={data?.stock === 0}
+                  >
+                    เพิ่มลงตะกร้า
+                  </button>
                 </div>
 
                 <div>
+                  <p className='text-xl text-red-600'>
+                    {data?.stock > 0 ? `คงเหลือ: ${data?.stock}` : 'สินค้าหมด'}
+                  </p>
                   <p className='text-slate-600 font-medium my-1'>รายละเอียดสินค้า : </p>
                   <p>{data?.description}</p>
                 </div>
@@ -219,7 +234,7 @@ const ProductDetails = () => {
 
       {
         data.category && (
-          <CategroyWiseProductDisplay category={data?.category} heading={"Recommended Product"}/>
+          <CategroyWiseProductDisplay category={data?.category} heading={"สินค้าที่เกี่ยวข้อง"}/>
         )
       }
 

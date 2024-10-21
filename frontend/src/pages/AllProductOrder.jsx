@@ -253,7 +253,7 @@ const AllProductOrder = () => {
                   onClick={() => setEditingOrder(order._id)}
                   className="text-gray-700 cursor-pointer hover:bg-gray-100 p-2 rounded"
                 >
-                  {order.additionalDetails || 'Click to add additional details'}
+                  {order.additionalDetails || 'คลิกเพื่อเพิ่มรายละเอียดเพิ่มเติม'}
                 </p>
               )}
             </div>
@@ -272,7 +272,7 @@ const AllProductOrder = () => {
                   )}
                   <div>
                     {/* Render the product name only if item.productId is not null */}
-                    <p className="font-semibold">{item.productId ? item.productId.productName : 'Product not found'}</p>
+                    <p className="font-semibold">{item.productId ? item.productId.productName : 'ไม่พบสินค้า'}</p>
                     <p className="text-gray-600">จำนวน: {item.quantity}</p>
                     {/* Render the product price only if item.productId is not null */}
                     <p className="text-gray-600">ราคา: {item.productId ? displayCurrency(item.productId.price) : 'N/A'}</p>

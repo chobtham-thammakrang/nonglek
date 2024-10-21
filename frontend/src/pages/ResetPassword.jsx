@@ -47,11 +47,11 @@ const ResetPassword = () => {
         toast.success(data.message);
         navigate('/login');
       } else {
-        toast.error(data.message || 'An error occurred');
+        toast.error(data.message || 'เกิดข้อผิดพลาด');
       }
     } catch (error) {
       console.error('Reset password error:', error);
-      toast.error('An error occurred. Please try again.');
+      toast.error('เกิดข้อผิดพลาด กรุณาลองอีกครั้ง.');
     }
   };
 

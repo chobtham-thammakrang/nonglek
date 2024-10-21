@@ -121,6 +121,23 @@ export const SummaryApi = {
         url: `${domain}/api/update-order-receipt-image`,
         method: 'PUT'
     },
+    // Product category API
+    getCategories: {
+        url: `${domain}/api/categories`,
+        method: "GET"
+    },
+    addCategory: {
+        url: `${domain}/api/categories`,
+        method: "POST"
+    },
+    updateCategory: {
+        url: `${domain}/api/categories`,
+        method: "PUT"
+    },
+    deleteCategory: {
+        url: `${domain}/api/categories`,
+        method: "DELETE"
+    },
 }
 
 export default SummaryApi

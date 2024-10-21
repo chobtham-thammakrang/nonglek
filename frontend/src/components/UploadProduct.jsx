@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { CgClose } from 'react-icons/cg'
-import productCategory from '../helpers/productCategory'
 import { FaCloudUploadAlt } from 'react-icons/fa'
 import uploadImage from '../helpers/uploadImage'
 import DisplayImage from './DisplayImage'
@@ -13,6 +12,7 @@ const UploadProduct = ({
     onClose,
     fetchData
 }) => {
+    const [categories, setCategories] = useState([]);
     const [data, setData] = useState({
         productName: "",
         shape: "",
@@ -20,10 +20,27 @@ const UploadProduct = ({
         productImage: [],
         description: "",
         price: "",
+        stock: "",
     })
     const [openFullScreenImage, setOpenFullScreenImage] = useState(false)
     const [fullScreenImage, setFullScreenImage] = useState("")
     const token = getAuthToken();
+
+    useEffect(() => {
+        const fetchCategories = async () => {
+            try {
+                const response = await fetch(SummaryApi.getCategories.url);
+                const result = await response.json();
+                if (result.success) {
+                    setCategories(result.data);
+                }
+            } catch (error) {
+                console.error('Error fetching categories:', error);
+            }
+        };
+
+        fetchCategories();
+    }, []);
 
     const handleOnChange = (e) => {
         const { name, value } = e.target
@@ -124,7 +141,7 @@ const UploadProduct = ({
                     <select required value={data.category} name='category' onChange={handleOnChange} className='p-2 bg-slate-100 border rounded'>
                         <option value={""}>เลือกประเภทสินค้า</option>
                         {
-                            productCategory.map((el, index) => {
+                            categories.map((el, index) => {
                                 return (
                                     <option value={el.value} key={el.value + index}>{el.label}</option>
                                 )
@@ -184,6 +201,18 @@ const UploadProduct = ({
                         placeholder='Enter Product Price'
                         name='price'
                         value={data.price}
+                        onChange={handleOnChange}
+                        className='p-2 bg-slate-100 border rounded'
+                        required
+                    />
+
+                    <label htmlFor="stock" className='mt-3'>จำนวนคงเหลือ: </label>
+                    <input
+                        type="number"
+                        id='stock'
+                        placeholder='Enter Product Stock'
+                        name='stock'
+                        value={data.stock}
                         onChange={handleOnChange}
                         className='p-2 bg-slate-100 border rounded'
                         required

@@ -18,6 +18,9 @@ const AdminProductCard = ({ data, fetchdata, onDelete }) => {
                     />
                 </div>
                 <h1 className='text-ellipsis line-clamp-2'>{data.productName}</h1>
+                <p className={`text-sm ${data.stock === 0 ? 'text-red-500' : 'text-gray-500'}`}>
+                    คงเหลือ: {data.stock}
+                </p>
 
                 <div className='flex items-center justify-between'>
                     <p className='font-semibold'>

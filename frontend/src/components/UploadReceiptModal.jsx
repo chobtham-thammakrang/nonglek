@@ -62,12 +62,12 @@ const UploadReceiptModal = ({ orderId, onClose, fetchOrders, isModal = true, ord
     <div className={isModal ? 'fixed z-10 inset-0 overflow-y-auto' : ''}>
       <div className={isModal ? 'flex items-center justify-center min-h-screen' : ''}>
         <div className={`bg-white rounded-lg shadow-lg p-8 max-w-md w-full ${isModal ? '' : 'mb-4'}`}>
-          <h2 className="text-2xl font-semibold mb-4 text-center">โอนเงินและอัปโหลดสลิป</h2>
+          <h2 className="text-2xl font-semibold mb-1 text-center">โอนเงินและอัปโหลดสลิป</h2>
           <div className="mb-6 text-center">
-            <img src={qr} alt="QR Code" className="w-64 h-64 mx-auto mb-4" />
+            <img src={qr} alt="QR Code" className="w-64 h-64 mx-auto" />
             <p className="font-semibold">ธนาคาร: กสิกรไทย</p>
-            <p className="font-semibold">หมายเลขบัญชี: 0641727385</p>
-            <p className="font-semibold">ชื่อบัญชี: ชอบธรรม ธรรมกร่าง</p>
+            <p className="font-semibold">หมายเลขบัญชี: 524-2-19644-0</p>
+            <p className="font-semibold">ชื่อบัญชี: พอจันทร์ วันดี</p>
           </div>
           {/* Display order total and shipping cost */}
           <div className="mb-6">
